@@ -13,3 +13,4 @@ EOF
 
 kubectl apply -k .
 rm $SECRETS_FN
+
