@@ -1,0 +1,16 @@
+---
+bases:
+  - ../development/
+
+resources:
+  - namespace.yaml
+
+patchesStrategicMerge:
+  - backup_cronjob.yaml
+
+
+commonLabels:
+  env: production
+
+namespace: production  
+

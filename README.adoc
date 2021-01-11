@@ -1,0 +1,23 @@
+= Deployment
+
+//image::https://github.com/bootiful-podcast/deployment/workflows/Deploy/badge.svg[Status]
+
+- setup a K8s NS
+- setup a DB in the new environment (could we use a GKE K8s managed yaml certificate?)
+- export the vue.js webapp as a Docker image which accepts env variables (see `run_docker_image.sh`)
+- setup the ingest job as a cron job
+- the whole deployment should live in a deployment script
+
+<!--  -->
+
+
+First cut: it would be cool if every repo in the sub projects simply ran a container and provided overrides for certain env variables
+
+<!--  -->
+
+Could my TWI repo provide a container which in turn accepts env variables and deploys everything else for us? So, the only thing each org (TTD, TWIS) would need to do is run the container in github actions, providing the correct env vars?
+
+that might be too difficult though. so maybe we could settle for something else? maybe org (TWIS, TTD) could have its own deployment repository in which we could find a shell script that orchestrates k8s? So this shell script would be duplicated across orgs but it'd be super easy to get setup and diff
+
+obviously, each fork would have their own specializations. TTD, for example, has the static site generator. this would be done after everything in TWI's core setup is done
+

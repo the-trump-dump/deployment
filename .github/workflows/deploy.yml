@@ -1,0 +1,39 @@
+name: Deploy
+
+env:
+  GCLOUD_ZONE: ${{ secrets.GCLOUD_ZONE  }}
+  GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT  }}
+  GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
+  GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME  }}
+
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          service_account_key: ${{ secrets.GCLOUD_SA_KEY }}
+          project_id: ${{ secrets.GCLOUD_PROJECT }}
+          export_default_credentials: true
+
+      - run: |
+          gcloud config set project $GCLOUD_PROJECT
+          gcloud --quiet auth configure-docker
+
+      - name: Deploy
+        run: |
+          cd $GITHUB_WORKSPACE
+          ./deploy.sh
