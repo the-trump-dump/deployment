@@ -17,7 +17,7 @@ spec:
 
       containers:
         - name: twi-editor-view
-          image: gcr.io/bootiful/twi-editor-view
+          image: gcr.io/bootiful/twi-editor-view@sha256:3d8b6e8efe5b079072ee777644c2ec68762aed3ea35172bd3a7406d8ced253c0
           ports:
             - containerPort: 8080
           envFrom:
