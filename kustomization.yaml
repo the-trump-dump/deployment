@@ -3,8 +3,6 @@ resources:
   - namespace.yaml
   - editor.yaml
   - api.yaml
-#  - rabbitmq.yaml
-#  - backup_cronjob.yaml
 
 namespace: twi
 
