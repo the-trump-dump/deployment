@@ -1,7 +1,8 @@
 ---
 resources:
   - namespace.yaml
-  - editor-view.yaml
+  - editor.yaml
+  - api.yaml
 #  - rabbitmq.yaml
 #  - backup_cronjob.yaml
 
@@ -13,20 +14,3 @@ configMapGenerator:
 
 commonLabels:
   env: production
-#
-#secretGenerator:
-#  - name: rabbitmq-secrets
-#    env: rabbitmq-secrets.env
-#
-#  - name: postgresql-secrets
-#    env: postgresql-secrets.env
-#
-#configMapGenerator:
-#
-#  - name: postgresql-init-db-configmap
-#    files:
-#      - bin/init_db.sh
-#
-#  - name: backup-cronjob-configmap
-#    files:
-#      - bin/backup_db.sh
