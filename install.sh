@@ -1,7 +1,7 @@
 #!/usr/bin/env bash 
 NS=ttd 
 
-source $HOME/Desktop/${NS}-deployment/${NS}-env.sh
+source $HOME/Desktop/deployment/${NS}-env.sh
 helm repo add this-week-in-charts https://this-week-in-charts.storage.googleapis.com
 
 NS=$TWI_NS
