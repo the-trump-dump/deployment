@@ -1,0 +1,29 @@
+{   
+
+	"wapo" : { 
+		"biden" : ["biden" , "harris", "coronavirus" , "democrat"  ,"pelosi", "schumer"],
+		"trump": ["trump", "covid", "coronavirus", "qanon","maga" ,  "q-anon","mcconnel", "alt-right","fascist"], 
+		"coronavirus": [ "covid", "covid-19" , "covid-19" , "coronavirus"] ,
+		"covid19": [ "covid", "covid-19" , "covid-19" , "coronavirus"] 
+	}, 	  
+	"nytimes" : { 
+		"biden" : ["biden" , "harris", "coronavirus" , "democrat"  ,"pelosi", "schumer"],
+		"trump": ["trump", "covid", "coronavirus", "qanon","maga" ,  "q-anon","mcconnel", "alt-right","fascist"], 
+		"coronavirus": [ "covid", "covid-19" , "covid-19" , "coronavirus"] ,
+		"covid19": [ "covid", "covid-19" , "covid-19" , "coronavirus"] 
+	}, 	  
+	"huffpost" : { 
+ 
+		"biden" : ["biden" , "harris", "coronavirus" , "democrat"  ,"pelosi", "schumer"],
+		"trump": ["trump", "covid", "coronavirus", "qanon","maga" ,  "q-anon","mcconnel", "alt-right","fascist"], 
+		"coronavirus": [ "covid", "covid-19" , "covid-19" , "coronavirus"] ,
+		"covid19": [ "covid", "covid-19" , "covid-19" , "coronavirus"] 
+ 
+	}, 	  
+	"politico":{ 
+		"biden":["biden" , "harris", "coronavirus" , "democrat"  ,"pelosi", "schumer"],
+		"trump":["trump", "covid", "coronavirus", "qanon","maga" ,  "q-anon","mcconnel", "alt-right","fascist"], 
+		"coronavirus":[ "covid", "covid-19" , "covid-19" , "coronavirus"] ,
+		"covid19":[ "covid", "covid-19" , "covid-19" , "coronavirus"] 
+	} 
+}  
