@@ -1,11 +1,11 @@
 #!/usr/bin/env bash 
-NS=ttd 
-
-source $HOME/Desktop/deployment/${NS}-env.sh
-helm repo add this-week-in-charts https://this-week-in-charts.storage.googleapis.com
 
 NS=$TWI_NS
-CHART_NAME=twi-${NS}-helm-chart 
+CHART_NAME=twi-${NS}-helm-chart
+
+helm repo add this-week-in-charts https://this-week-in-charts.storage.googleapis.com 
+helm repo add stable https://charts.helm.sh/stable
+kubectl get namespaces 
 
 function create_ip(){
     IPN=$1
@@ -20,10 +20,9 @@ function init(){
 
 init 
 
-HELM_COMMAND="install"
-helm list -n $NS | grep $CHART_NAME  && HELM_COMMAND="upgrade" 
-echo "Performing a helm ${HELM_COMMAND}..."
 
+HELM_COMMAND="install"
+helm list --all-namespaces | grep $CHART_NAME  && HELM_COMMAND="upgrade"
 helm $HELM_COMMAND  \
  --set twi.prefix=$NS \
  --set twi.domain=$TWI_DOMAIN \
