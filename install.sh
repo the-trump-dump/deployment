@@ -20,6 +20,10 @@ function init(){
 
 init 
 
+export INGEST_FEED_ENCODED_MAPPINGS=$( cat feed-mappings.json | base64 | tr -d '\n'   )
+export INGEST_TWITTER_ENCODED_MAPPINGS=$( cat twitter-mappings.json | base64 | tr -d '\n'  )
+
+
 HELM_COMMAND="install"
 helm list --all-namespaces | grep $CHART_NAME  && HELM_COMMAND="upgrade"
 helm $HELM_COMMAND  \
