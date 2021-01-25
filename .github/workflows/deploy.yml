@@ -1,16 +1,32 @@
 name: Deploy
 
 env:
-  GCLOUD_ZONE: ${{ secrets.GCLOUD_ZONE  }}
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  ARTIFACTORY_API_TOKEN_SECRET: ${{ secrets.ARTIFACTORY_API_TOKEN_SECRET }} 
+  ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }} 
+  ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }} 
+  DB_DB: ${{ secrets.DB_DB }}
+  DB_HOST: ${{ secrets.DB_HOST  }}
+  DB_PW: ${{ secrets.DB_PW  }}
+  DB_USER: ${{ secrets.DB_USER  }}
   GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT  }}
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
+  GCLOUD_ZONE: ${{ secrets.GCLOUD_ZONE  }}
   GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-  GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME  }}
-  PINBOARD_TOKEN: ${{ secrets.PINBOARD_TOKEN }}
-  SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
-  SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
-  SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+  GKE_CLUSTER_NAME: ${{ secrets.GKE_CLUSTER_NAME }} 
+  PINBOARD_TOKEN: ${{ secrets.PINBOARD_TOKEN }} 
+  REDIS_HOST: ${{ secrets.REDIS_HOST }} 
+  REDIS_PORT: ${{ secrets.REDIS_PORT }} 
+  REDIS_PW: ${{ secrets.REDIS_PW }} 
+  TWITTER_CLIENT_KEY : ${{ secrets.TWITTER_TWI_CLIENT_KEY }} 
+  TWITTER_CLIENT_KEY_SECRET : ${{ secrets.TWITTER_TWI_CLIENT_KEY_SECRET  }}
+  TWI_NS :  ${{ secrets.TWI_NS  }} 
+  TWI_DOMAIN : ${{ secrets.TWI_DOMAIN  }}
+  INGEST_TAG :  ${{ secrets.INGEST_TAG }}
+  INGESTED_TAG :  ${{ secrets.INGESTED_TAG }}
+  INGEST_FEED_ENCODED_MAPPINGS : ${{ secrets.INGEST_FEED_ENCODED_MAPPINGS }}
+  INGEST_TWITTER_ENCODED_MAPPINGS : ${{ secrets.INGEST_TWITTER_ENCODED_MAPPINGS }}
+  
 
 on:
   push:
@@ -35,9 +51,14 @@ jobs:
       - run: |
           gcloud config set project $GCLOUD_PROJECT
           gcloud --quiet auth configure-docker
-          gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project ${GCLOUD_PROJECT}
+          gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project $GCLOUD_PROJECT
+
+      - name: Helm tool installer
+        uses: Azure/setup-helm@v1
+        with:
+          version: 3.5.0
 
       - name: Deploy
         run: |
           cd $GITHUB_WORKSPACE
-          ./deploy.sh
+          ./install.sh
