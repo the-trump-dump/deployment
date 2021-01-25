@@ -20,7 +20,6 @@ function init(){
 
 init 
 
-
 HELM_COMMAND="install"
 helm list --all-namespaces | grep $CHART_NAME  && HELM_COMMAND="upgrade"
 helm $HELM_COMMAND  \
