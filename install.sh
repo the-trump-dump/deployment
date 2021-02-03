@@ -9,6 +9,7 @@ helm repo add this-week-in-charts https://this-week-in-charts.storage.googleapis
 helm repo add stable https://charts.helm.sh/stable
 kubectl get namespaces 
 
+
 function create_ip(){
     IPN=$1
     gcloud compute addresses list --format json | jq '.[].name' -r | grep $IPN || gcloud compute addresses create $IPN --global
